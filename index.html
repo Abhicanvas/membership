@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IEEE Club Membership Form</title>
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #e4e4e7; min-height: 100vh; padding: 20px; }
+    .container { max-width: 700px; margin: auto; background: #1e1e1e; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .header { background: linear-gradient(135deg, #3b82f6, #1d4ed8); padding: 32px; text-align: center; color: white; }
+    .header h2 { font-size: 2rem; margin-bottom: 8px; }
+    .header p { font-size: 1rem; }
+    form { padding: 32px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95rem; }
+    input, select { width: 100%; padding: 12px 14px; background: #27272a; border: 2px solid #3f3f46; border-radius: 8px; color: #e4e4e7; font-size: 1rem; transition: all 0.3s; }
+    input:focus, select:focus { outline: none; border-color: #3b82f6; background: #2d2d30; box-shadow: 0 0 0 4px rgba(59,130,246,0.1); }
+    input[type="checkbox"] { width: auto; margin-right: 8px; }
+    
+    .societies-section { 
+      background: #27272a; 
+      border-radius: 12px; 
+      padding: 24px; 
+      margin-bottom: 24px;
+      border: 2px solid #3f3f46;
+    }
+    .societies-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .society-item {
+      background: #1e1e1e;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    .society-item:hover {
+      border-color: #3b82f6;
+      background: #252527;
+    }
+    .society-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+      accent-color: #3b82f6;
+    }
+    .society-details {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .society-name {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .society-fee {
+      font-weight: 700;
+      color: #fbbf24;
+      font-size: 1.05rem;
+    }
+    .society-fee.free {
+      color: #10b981;
+    }
+    
+    .fee-box { 
+      background: linear-gradient(135deg,#1e3a8a,#1d4ed8); 
+      border-radius: 12px; 
+      padding: 24px; 
+      margin: 24px 0; 
+      color: #fff; 
+    }
+    .fee-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 1rem;
+    }
+    .fee-row.total {
+      border-top: 2px solid rgba(255,255,255,0.3);
+      padding-top: 16px;
+      margin-top: 8px;
+    }
+    .fee-label {
+      font-weight: 500;
+    }
+    .fee-amount {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fbbf24;
+    }
+    .fee-row.total .fee-amount {
+      font-size: 1.5rem;
+    }
+    
+    button { width: 100%; padding: 16px; background: linear-gradient(135deg,#3b82f6,#1d4ed8); color:white; border:none; border-radius:12px; font-size:1.1rem; font-weight:600; cursor:pointer; transition: all 0.3s; }
+    button:hover { background: linear-gradient(135deg,#2563eb,#1e40af); transform: translateY(-2px); }
+    .success-message { background: #10b981; color: white; padding: 16px; border-radius: 12px; margin-bottom: 20px; display: none; text-align: center; }
+    .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
+    .success-modal { background: linear-gradient(135deg, #10b981, #059669); padding: 48px; border-radius: 20px; text-align: center; max-width: 400px; animation: scaleIn 0.3s ease; }
+    .success-modal h3 { font-size: 2rem; margin-bottom: 16px; color: white; }
+    .success-modal p { font-size: 1.1rem; color: #d1fae5; }
+    .checkmark { width: 80px; height: 80px; margin: 0 auto 24px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #10b981; }
+    @keyframes scaleIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
+    .loading-modal { background: linear-gradient(135deg, #3b82f6, #1d4ed8); padding: 48px; border-radius: 20px; text-align: center; max-width: 400px; }
+    .loading-spinner { width: 60px; height: 60px; margin: 0 auto 24px; border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; animation: spin 1s linear infinite; }
+    .loading-modal h3 { font-size: 1.5rem; color: white; margin-bottom: 8px; }
+    .loading-modal p { font-size: 1rem; color: #bfdbfe; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .info-box { background: #27272a; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 8px; margin-bottom: 24px; line-height: 1.6; }
+    .info-box a { color: #60a5fa; text-decoration: none; }
+    .info-box a:hover { text-decoration: underline; }
+    
+    /* Payment Image Styling */
+    .payment-image-container {
+      background: #27272a;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      text-align: center;
+      border: 2px solid #3f3f46;
+      transition: all 0.3s ease;
+    }
+    .payment-image-container:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+    }
+    .payment-image-container h3 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #60a5fa;
+      font-weight: 600;
+    }
+    .payment-image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border: 2px solid #3f3f46;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 0 auto;
+      max-height: 400px;
+      object-fit: contain;
+    }
+    .payment-image-container img:hover {
+      transform: scale(1.02);
+      border-color: #3b82f6;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    }
+    .payment-instructions {
+      margin-top: 16px;
+      padding: 16px;
+      background: #1e1e1e;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #a1a1aa;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-modal">
+      <div class="loading-spinner"></div>
+      <h3>Submitting...</h3>
+      <p>Please wait while we process your registration</p>
+    </div>
+  </div>
+
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-modal">
+      <div class="checkmark">✓</div>
+      <h3>Success!</h3>
+      <p>Registration submitted successfully!</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h2>IEEE Membership Registration</h2>
+      <p>Join the world's largest technical professional organization</p>
+    </div>
+
+    <form id="membershipForm">
+      <div class="success-message" id="successMessage">
+        Registration submitted successfully!
+      </div>
+
+      <div class="info-box">
+        <p><strong>New Membership or Renewal.</strong><br>
+        Those who wish to renew / get their membership till 31st December 2026 kindly fill this form ASAP.</p>
+        
+        <p style="margin-top: 16px;"><strong>YEARLY MEMBERSHIP RATES:</strong><br>
+        <strong>IEEE Membership: Rs. 1545.00</strong><br>
+        Full Year Memberships are valid up to 31st December 2026.</p>
+        
+        <p style="margin-top: 16px;">Students are requested to pay the membership fees as well as the amount for their interested societies too.<br>
+        Details regarding cost for each society is given below.</p>
+        
+        <p style="margin-top: 16px;"><strong>Mode of Payment:</strong></p>
+        <p>1. Google Pay (Name: Aaron Easo | Ph No.: +91 90749 38281 | UPI ID: aaroneaso321-1@okhdfc)</p>
+        <p>2. Bank Transfer<br>
+        &nbsp;&nbsp;&nbsp;Bank Name: FEDERAL BANK<br>
+        &nbsp;&nbsp;&nbsp;Branch Name: HORMIS NAGAR<br>
+        &nbsp;&nbsp;&nbsp;A/c no: 17140100057830<br>
+        &nbsp;&nbsp;&nbsp;IFSC: FDRL0001714<br>
+        &nbsp;&nbsp;&nbsp;A/c Holder Name: Aaron Easo</p>
+        
+        <p style="margin-top: 16px;"><strong>Please mention the Mode of Payment.</strong><br>
+        <strong>**PLEASE MENTION YOUR FULL NAME.**</strong></p>
+        
+        <p style="margin-top: 16px;"><strong>For any clarifications contact:</strong><br>
+        Abiram B Krishna - 8138901211 (SB Membership Development Chair)<br>
+        Aaron Easo - 90749 38281 (SB Treasurer)</p>
+        
+        <p style="margin-top: 16px;"><strong>Once The Membership is been taken it cannot be cancelled!!</strong><br>
+        For People opting the option to pay by cash, the cash will be collected by our representatives.</p>
+      </div>
+
+      <div class="form-group"><label>First Name</label><input type="text" name="firstName" required></div>
+      <div class="form-group"><label>Last Name</label><input type="text" name="lastName" required></div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
+      <div class="form-group"><label>Contact</label><input type="text" name="contact" required></div>
+      <div class="form-group"><label>IEEE ID</label><input type="text" name="ieeeId"></div>
+      <div class="form-group"><label>Membership Type</label>
+        <select name="membershipType" required>
+          <option value="">--Select--</option>
+          <option value="New">New</option>
+          <option value="Renewal">Renewal</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Renewal Password</label><input type="password" name="renewalPassword"></div>
+      <div class="form-group"><label>Branch</label>
+        <select name="branch" required>
+          <option value="">--Select Branch--</option>
+          <option value="CSE">CSE</option>
+          <option value="ECE">ECE</option>
+          <option value="EEE">EEE</option>
+          <option value="ME">ME</option>
+          <option value="CE">CE</option>
+          <option value="AI">AI</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Batch</label>
+        <select name="batch" required>
+          <option value="">--Select Batch--</option>
+          <option value="A">A</option><option value="B">B</option>
+          <option value="C">C</option><option value="D">D</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Year</label>
+        <select name="year" required>
+          <option value="">--Select Year--</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+          <option value="4th Year">4th Year</option>
+        </select>
+      </div>
+
+      <div class="societies-section">
+        <h3>
+          <span>📋</span>
+          Additional Society Memberships (Optional)
+        </h3>
+        
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="Computer Society (445 Rs)" data-fee="445">
+          <div class="society-details">
+            <span class="society-name">Computer Society</span>
+            <span class="society-fee">₹445</span>
+          </div>
+        </label>
+
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="Robotics and Automation Society (280 Rs)" data-fee="280">
+          <div class="society-details">
+            <span class="society-name">Robotics and Automation Society</span>
+            <span class="society-fee">₹280</span>
+          </div>
+        </label>
+
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="Signal Processing Society (225 Rs)" data-fee="225">
+          <div class="society-details">
+            <span class="society-name">Signal Processing Society</span>
+            <span class="society-fee">₹225</span>
+          </div>
+        </label>
+
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="Education Society (115 Rs)" data-fee="115">
+          <div class="society-details">
+            <span class="society-name">Education Society</span>
+            <span class="society-fee">₹115</span>
+          </div>
+        </label>
+
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="Power and Energy Society (60 Rs)" data-fee="60">
+          <div class="society-details">
+            <span class="society-name">Power and Energy Society</span>
+            <span class="society-fee">₹60</span>
+          </div>
+        </label>
+
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="Communication Society (60 Rs)" data-fee="60">
+          <div class="society-details">
+            <span class="society-name">Communication Society</span>
+            <span class="society-fee">₹60</span>
+          </div>
+        </label>
+
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="Women in Engineering (Free)" data-fee="0">
+          <div class="society-details">
+            <span class="society-name">Women in Engineering</span>
+            <span class="society-fee free">FREE</span>
+          </div>
+        </label>
+
+        <label class="society-item">
+          <input type="checkbox" name="societies" value="SIGHT (Free)" data-fee="0" checked>
+          <div class="society-details">
+            <span class="society-name">SIGHT</span>
+            <span class="society-fee free">FREE</span>
+          </div>
+        </label>
+      </div>
+
+      <div class="fee-box">
+        <div class="fee-breakdown">
+          <div class="fee-row">
+            <span class="fee-label">IEEE Membership Fee:</span>
+            <span class="fee-amount">₹1,545</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-label">Society Memberships:</span>
+            <span class="fee-amount" id="societiesFee">₹0</span>
+          </div>
+          <div class="fee-row total">
+            <span class="fee-label">Grand Total:</span>
+            <span class="fee-amount" id="grandTotal">₹1,545</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="payment-image-container">
+        <h3>🏦 Payment QR Code</h3>
+        <img src="img/Screenshot 2025-10-01 152800.png" alt="Payment QR Code - Scan to make payment">
+        <div class="payment-instructions">
+          <strong>Instructions:</strong> Scan the QR code above to make the payment, then enter your transaction ID below and upload the payment proof.
+        </div>
+      </div>
+      
+      <div class="form-group"><label>Transaction ID</label><input type="text" name="transactionId" required></div>
+      <div class="form-group"><label>Upload Payment Proof</label><input type="file" id="photo" name="photo" accept="image/*" required></div>
+
+      <button type="submit">Submit Registration</button>
+    </form>
+  </div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbyo7yswaaAOYOgqxqtmP-qwJ_LYymqTPySSyQFokCHdT8PX6G0SN7WN-KIlkAOyxMRE/exec";
+const BASE_MEMBERSHIP_FEE = 1545;
+
+// Calculate fees when checkboxes change
+document.querySelectorAll('input[name="societies"]').forEach(checkbox => {
+  checkbox.addEventListener('change', calculateFees);
+});
+
+function calculateFees() {
+  let societyTotal = 0;
+  document.querySelectorAll('input[name="societies"]:checked').forEach(cb => {
+    societyTotal += parseInt(cb.getAttribute('data-fee') || 0);
+  });
+  const grandTotal = BASE_MEMBERSHIP_FEE + societyTotal;
+  
+  document.getElementById("societiesFee").innerText = `₹${societyTotal.toLocaleString()}`;
+  document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString()}`;
+}
+
+// Initial calculation
+calculateFees();
+
+document.getElementById("membershipForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+
+  // collect societies
+  const societies = Array.from(document.querySelectorAll('input[name="societies"]:checked'))
+    .map(cb => cb.value).join(", ");
+
+  // handle file
+  const fileInput = document.getElementById("photo");
+  let fileContent = "", fileName = "", fileType = "";
+  if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    fileName = file.name;
+    fileType = file.type;
+    const reader = new FileReader();
+    reader.onload = async function(evt) {
+      fileContent = evt.target.result.split(",")[1]; // base64 only
+
+      const data = {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        email: form.email.value,
+        contact: form.contact.value,
+        ieeeId: form.ieeeId.value,
+        membershipType: form.membershipType.value,
+        renewalPassword: form.renewalPassword.value,
+        branch: form.branch.value,
+        batch: form.batch.value,
+        year: form.year.value,
+        societies: societies,
+        totalFee: document.getElementById("grandTotal").innerText.replace("₹","").replace(",",""),
+        transactionId: form.transactionId.value,
+        fileContent: fileContent,
+        fileName: fileName,
+        fileType: fileType
+      };
+
+      try {
+        // Show loading overlay
+        document.getElementById("loadingOverlay").style.display = "flex";
+        
+        const res = await fetch(scriptURL, {
+          method: "POST",
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        
+        // Hide loading overlay
+        document.getElementById("loadingOverlay").style.display = "none";
+        
+        if (result.result === "success") {
+          document.getElementById("successOverlay").style.display = "flex";
+          form.reset();
+          calculateFees(); // Recalculate after reset
+          
+          // Hide success modal after 10 seconds
+          setTimeout(() => {
+            document.getElementById("successOverlay").style.display = "none";
+          }, 10000);
+        }
+      } catch (err) {
+        // Hide loading overlay on error
+        document.getElementById("loadingOverlay").style.display = "none";
+        alert("Error: " + err.message);
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+});
+</script>
+</body>
+</html>
