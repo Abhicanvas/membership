@@ -483,7 +483,7 @@
         <div class="societies-grid">
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Computer Society (445 Rs)" data-fee="445">
+              <input type="checkbox" name="societies" value="Computer Society" data-fee="445">
               <span class="society-name">Computer Society</span>
             </div>
             <span class="society-fee paid">₹445</span>
@@ -491,7 +491,7 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Robotics and Automation Society (280 Rs)" data-fee="280">
+              <input type="checkbox" name="societies" value="Robotics and Automation Society " data-fee="280">
               <span class="society-name">Robotics & Automation</span>
             </div>
             <span class="society-fee paid">₹280</span>
@@ -499,7 +499,7 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Signal Processing Society (225 Rs)" data-fee="225">
+              <input type="checkbox" name="societies" value="Signal Processing Society " data-fee="225">
               <span class="society-name">Signal Processing</span>
             </div>
             <span class="society-fee paid">₹225</span>
@@ -507,7 +507,7 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Education Society (115 Rs)" data-fee="115">
+              <input type="checkbox" name="societies" value="Education Society " data-fee="115">
               <span class="society-name">Education Society</span>
             </div>
             <span class="society-fee paid">₹115</span>
@@ -515,7 +515,7 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Power and Energy Society (60 Rs)" data-fee="60">
+              <input type="checkbox" name="societies" value="Power and Energy Society " data-fee="60">
               <span class="society-name">Power & Energy</span>
             </div>
             <span class="society-fee paid">₹60</span>
@@ -523,15 +523,15 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Communication Society (60 Rs)" data-fee="60">
+              <input type="checkbox" name="societies" value="Communication Society" data-fee="0">
               <span class="society-name">Communication Society</span>
             </div>
-            <span class="society-fee paid">₹60</span>
+            <span class="society-fee free">Free</span>
           </label>
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Women in Engineering (Free)" data-fee="0">
+              <input type="checkbox" name="societies" value="Women in Engineering" data-fee="0" checked>
               <span class="society-name">Women in Engineering</span>
             </div>
             <span class="society-fee free">FREE</span>
@@ -539,7 +539,7 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="SIGHT (Free)" data-fee="0" checked>
+              <input type="checkbox" name="societies" value="SIGHT" data-fee="0" checked>
               <span class="society-name">SIGHT</span>
             </div>
             <span class="society-fee free">FREE</span>
@@ -606,16 +606,78 @@ document.querySelectorAll('input[name="societies"]').forEach(checkbox => {
   checkbox.addEventListener('change', calculateFees);
 });
 
+/* --- REPLACE the existing calculateFees function with this --- */
 function calculateFees() {
+  const membershipSelect = document.querySelector('select[name="membershipType"]');
+  const isNew = membershipSelect && membershipSelect.value === "New";
+
   let societyTotal = 0;
-  document.querySelectorAll('input[name="societies"]:checked').forEach(cb => {
-    societyTotal += parseInt(cb.getAttribute('data-fee') || 0);
+
+  document.querySelectorAll('input[name="societies"]').forEach(cb => {
+    // original data-fee (as number)
+    const originalFee = parseInt(cb.getAttribute('data-fee') || 0, 10);
+
+    // determine adjusted fee based on rules
+    let adjustedFee = originalFee;
+
+    // identify society by value (keeps matching robust)
+    const val = (cb.value || "").toLowerCase();
+
+    if (isNew) {
+      if (val.includes("signal processing") || val.includes("signal processing society") ) {
+        // 50% off for Signal Processing (round to nearest rupee)
+        adjustedFee = Math.round(originalFee * 0.5);
+      }
+      if (val.includes("computer society") || val.includes("computer")) {
+        // Computer Society free for new members
+        adjustedFee = 0;
+      }
+    } else {
+      // for renewals or others: use originalFee (no change)
+      adjustedFee = originalFee;
+    }
+
+    // update the visible fee badge next to the checkbox (if present)
+    // we locate the sibling .society-fee inside the parent label
+    const parentLabel = cb.closest('.society-item');
+    if (parentLabel) {
+      const feeSpan = parentLabel.querySelector('.society-fee');
+      if (feeSpan) {
+        if (adjustedFee === 0) {
+          feeSpan.innerText = feeSpan.classList.contains('free') ? feeSpan.innerText : "FREE";
+          feeSpan.classList.remove('paid');
+          feeSpan.classList.add('free');
+        } else {
+          feeSpan.innerText = `₹${adjustedFee.toLocaleString()}`;
+          feeSpan.classList.remove('free');
+          feeSpan.classList.add('paid');
+        }
+      }
+    }
+
+    // add to total only if checkbox is checked
+    if (cb.checked) {
+      societyTotal += adjustedFee;
+    }
   });
+
   const grandTotal = BASE_MEMBERSHIP_FEE + societyTotal;
-  
+
   document.getElementById("societiesFee").innerText = `₹${societyTotal.toLocaleString()}`;
   document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString()}`;
 }
+/* --- End replacement --- */
+
+/* --- ADD this listener so changing Membership Type recalculates fees immediately --- */
+const membershipTypeSelect = document.querySelector('select[name="membershipType"]');
+if (membershipTypeSelect) {
+  membershipTypeSelect.addEventListener('change', calculateFees);
+}
+
+/* Keep the existing line that calls calculateFees() at load — it will now use the new rules */
+calculateFees();
+
+
 
 calculateFees();
 
