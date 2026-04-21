@@ -1,53 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IEEE Membership Form</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
-      background: #121212; 
-      color: #e0e0e0; 
-      min-height: 100vh; 
-      padding: 40px 20px; 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    
-    .container { 
-      max-width: 800px; 
-      margin: 0 auto; 
-      background: #1e1e1e; 
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #1e1e1e;
       border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
-    
-    .header { 
-      background: #252525; 
-      padding: 32px 40px; 
+
+    .header {
+      background: #252525;
+      padding: 32px 40px;
       border-bottom: 2px solid #333333;
     }
-    
-    .header h2 { 
-      font-size: 1.75rem; 
-      margin-bottom: 8px; 
+
+    .header h2 {
+      font-size: 1.75rem;
+      margin-bottom: 8px;
       font-weight: 400;
       color: #ffffff;
     }
-    
-    .header p { 
-      font-size: 0.95rem; 
+
+    .header p {
+      font-size: 0.95rem;
       color: #a0a0a0;
     }
-    
-    form { 
-      padding: 40px; 
+
+    form {
+      padding: 40px;
     }
-    
+
     .form-section {
       margin-bottom: 32px;
     }
-    
+
     .section-title {
       font-size: 1rem;
       font-weight: 500;
@@ -56,60 +62,62 @@
       padding-bottom: 8px;
       border-bottom: 1px solid #333333;
     }
-    
+
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
       margin-bottom: 20px;
     }
-    
-    .form-group { 
-      margin-bottom: 20px; 
+
+    .form-group {
+      margin-bottom: 20px;
     }
-    
+
     .form-group.full-width {
       grid-column: 1 / -1;
     }
-    
-    label { 
-      display: block; 
-      margin-bottom: 8px; 
-      font-weight: 400; 
-      font-size: 0.9rem; 
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 400;
+      font-size: 0.9rem;
       color: #b0b0b0;
     }
-    
-    input, select { 
-      width: 100%; 
-      padding: 12px 14px; 
-      background: #252525; 
-      border: 1px solid #333333; 
-      border-radius: 3px; 
-      color: #e0e0e0; 
-      font-size: 0.95rem; 
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      background: #252525;
+      border: 1px solid #333333;
+      border-radius: 3px;
+      color: #e0e0e0;
+      font-size: 0.95rem;
       transition: border-color 0.2s;
       font-family: inherit;
     }
-    
-    input:focus, select:focus { 
-      outline: none; 
+
+    input:focus,
+    select:focus {
+      outline: none;
       border-color: #00629b;
       background: #2a2a2a;
     }
-    
+
     input[type="file"] {
       padding: 10px;
       cursor: pointer;
     }
-    
+
     .societies-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-top: 16px;
     }
-    
+
     .society-item {
       background: #252525;
       border: 1px solid #333333;
@@ -121,12 +129,12 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    
+
     .society-item:hover {
       background: #303030;
       border-color: #404040;
     }
-    
+
     .society-item input[type="checkbox"] {
       width: 18px;
       height: 18px;
@@ -134,18 +142,18 @@
       cursor: pointer;
       flex-shrink: 0;
     }
-    
+
     .society-left {
       display: flex;
       align-items: center;
       flex: 1;
     }
-    
+
     .society-name {
       font-size: 0.9rem;
       color: #e0e0e0;
     }
-    
+
     .society-fee {
       font-weight: 500;
       color: #a0a0a0;
@@ -153,15 +161,15 @@
       margin-left: auto;
       padding-left: 12px;
     }
-    
+
     .society-fee.paid {
       color: #b0b0b0;
     }
-    
+
     .society-fee.free {
       color: #4caf50;
     }
-    
+
     .fee-summary {
       background: #252525;
       border: 1px solid #333333;
@@ -169,14 +177,14 @@
       padding: 24px;
       margin: 32px 0;
     }
-    
+
     .fee-row {
       display: flex;
       justify-content: space-between;
       padding: 10px 0;
       font-size: 0.95rem;
     }
-    
+
     .fee-row.total {
       border-top: 1px solid #333333;
       padding-top: 16px;
@@ -184,39 +192,39 @@
       font-size: 1.1rem;
       font-weight: 500;
     }
-    
+
     .fee-label {
       color: #b0b0b0;
     }
-    
+
     .fee-amount {
       color: #e0e0e0;
       font-weight: 500;
     }
-    
-    .info-box { 
-      background: #252525; 
-      border-left: 3px solid #00629b; 
-      padding: 20px; 
-      border-radius: 3px; 
-      margin-bottom: 32px; 
-      line-height: 1.7; 
+
+    .info-box {
+      background: #252525;
+      border-left: 3px solid #00629b;
+      padding: 20px;
+      border-radius: 3px;
+      margin-bottom: 32px;
+      line-height: 1.7;
       font-size: 0.9rem;
       color: #b0b0b0;
     }
-    
+
     .info-box strong {
       color: #e0e0e0;
     }
-    
+
     .info-box p {
       margin-bottom: 12px;
     }
-    
+
     .info-box p:last-child {
       margin-bottom: 0;
     }
-    
+
     .payment-qr {
       background: #252525;
       border: 1px solid #333333;
@@ -225,14 +233,14 @@
       text-align: center;
       margin: 32px 0;
     }
-    
+
     .payment-qr h3 {
       font-size: 1rem;
       font-weight: 500;
       margin-bottom: 16px;
       color: #e0e0e0;
     }
-    
+
     .payment-qr img {
       max-width: 300px;
       width: 100%;
@@ -241,113 +249,121 @@
       border-radius: 3px;
       margin: 16px 0;
     }
-    
+
     .payment-note {
       font-size: 0.85rem;
       color: #a0a0a0;
       margin-top: 12px;
       line-height: 1.5;
     }
-    
-    button { 
-      width: 100%; 
-      padding: 14px; 
-      background: #00629b; 
-      color: #ffffff; 
-      border: none; 
-      border-radius: 3px; 
-      font-size: 1rem; 
-      font-weight: 500; 
-      cursor: pointer; 
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #00629b;
+      color: #ffffff;
+      border: none;
+      border-radius: 3px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
       transition: all 0.2s;
       margin-top: 24px;
     }
-    
-    button:hover { 
+
+    button:hover {
       background: #004f7c;
     }
-    
+
     button:active {
       background: #003a5a;
     }
-    
-    .modal-overlay { 
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%; 
-      background: rgba(0,0,0,0.8); 
-      display: none; 
-      justify-content: center; 
-      align-items: center; 
-      z-index: 1000; 
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    
-    .modal { 
-      background: #1e1e1e; 
-      padding: 40px; 
-      border-radius: 4px; 
-      text-align: center; 
+
+    .modal {
+      background: #1e1e1e;
+      padding: 40px;
+      border-radius: 4px;
+      text-align: center;
       max-width: 400px;
       border: 1px solid #333333;
     }
-    
-    .modal h3 { 
-      font-size: 1.5rem; 
-      margin-bottom: 12px; 
+
+    .modal h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
       color: #ffffff;
       font-weight: 500;
     }
-    
-    .modal p { 
-      font-size: 0.95rem; 
+
+    .modal p {
+      font-size: 0.95rem;
       color: #a0a0a0;
     }
-    
-    .spinner { 
-      width: 50px; 
-      height: 50px; 
-      margin: 0 auto 20px; 
-      border: 3px solid #333333; 
-      border-top: 3px solid #00629b; 
-      border-radius: 50%; 
-      animation: spin 0.8s linear infinite; 
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 20px;
+      border: 3px solid #333333;
+      border-top: 3px solid #00629b;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
     }
-    
-    @keyframes spin { 
-      0% { transform: rotate(0deg); } 
-      100% { transform: rotate(360deg); } 
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
-    
-    .checkmark { 
-      width: 60px; 
-      height: 60px; 
-      margin: 0 auto 20px; 
-      background: #4caf50; 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-size: 2rem; 
+
+    .checkmark {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: #4caf50;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
       color: #ffffff;
     }
-    
+
     @media (max-width: 768px) {
-      .form-row, .societies-grid {
+
+      .form-row,
+      .societies-grid {
         grid-template-columns: 1fr;
       }
-      
+
       form {
         padding: 24px;
       }
-      
+
       .header {
         padding: 24px;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="modal-overlay" id="loadingOverlay">
     <div class="modal">
@@ -374,18 +390,20 @@
     <form id="membershipForm">
       <div class="info-box">
         <p><strong>New Membership or Renewal</strong><br>
-        Those who wish to renew / get their membership till 31st December 2026 kindly fill this form ASAP.</p>
-        
+          Those who wish to renew / get their membership till 31st December 2026 kindly fill this form ASAP.</p>
+
         <p><strong>YEARLY MEMBERSHIP RATES:</strong><br>
-        <strong>IEEE Membership: Rs. 1545.00</strong><br>
-        Full Year Memberships are valid up to 31st December 2026.</p>
-        
-        <p>Students are requested to pay the membership fees as well as the amount for their interested societies too. Details regarding cost for each society is given below.</p>
-            
+          <strong>IEEE Membership: Rs. 1545.00</strong><br>
+          Full Year Memberships are valid up to 31st December 2026.
+        </p>
+
+        <p>Students are requested to pay the membership fees as well as the amount for their interested societies too.
+          Details regarding cost for each society is given below.</p>
+
         <p><strong>For any clarifications contact:</strong><br>
-        Abiram B Krishna - 81389 01211 (SB Membership Development Chair)<br>
-        Adithya JG - 97471 05715 (SB Treasurer)</p>
-        
+          Abiram B Krishna - 81389 01211 (SB Membership Development Chair)<br>
+          Adithya JG - 97471 05715 (SB Treasurer)</p>
+
         <p><strong>Once The Membership is been taken it cannot be cancelled!!</strong><br>
       </div>
 
@@ -401,7 +419,7 @@
             <input type="text" name="lastName" required>
           </div>
         </div>
-        
+
         <div class="form-row">
           <div class="form-group">
             <label>Email</label>
@@ -430,7 +448,7 @@
             </select>
           </div>
         </div>
-        
+
         <div class="form-group">
           <label>Renewal Password (if applicable)</label>
           <input type="password" name="renewalPassword">
@@ -464,7 +482,7 @@
             </select>
           </div>
         </div>
-        
+
         <div class="form-group">
           <label>Year</label>
           <select name="year" required>
@@ -479,7 +497,7 @@
 
       <div class="form-section">
         <div class="section-title">Society Memberships (Optional)</div>
-        
+
         <div class="societies-grid">
           <label class="society-item">
             <div class="society-left">
@@ -565,23 +583,25 @@
       <div class="form-section">
         <div class="section-title">Payment Information</div>
         <div class="info-box">
-        <p><strong>Mode of Payment:</strong></p>
-        <p>1. Google Pay (Name: Adhithya JG | Ph No.: +91 97471705715 | UPI ID: adithya.jgofficial@okhdfcbank )</p>
-        <p>2. Bank Transfer<br>
-        &nbsp;&nbsp;&nbsp;Bank Name: TO BE UPDATED<br>
-        &nbsp;&nbsp;&nbsp;Branch Name: TO BE UPDATED<br>
-        &nbsp;&nbsp;&nbsp;A/c no: TO BE UPDATED<br>
-        &nbsp;&nbsp;&nbsp;IFSC: TO BE UPDATED<br>
-        &nbsp;&nbsp;&nbsp;A/c Holder Name: Adithya JG</p>
-        
-        <strong>**PLEASE MENTION YOUR FULL NAME.**</strong></p>
+          <p><strong>Mode of Payment:</strong></p>
+          <p>1. Google Pay (Name: Adhithya Krishna JG | Ph No.: +91 97471705715 | UPI ID: adithya.jgofficial@okhdfcbank
+            )</p>
+          <p>2. Bank Transfer<br>
+            &nbsp;&nbsp;&nbsp;Bank Name: Federal Bank<br>
+            &nbsp;&nbsp;&nbsp;Branch Name: Perumbavoor<br>
+            &nbsp;&nbsp;&nbsp;A/c no: 17430100054147<br>
+            &nbsp;&nbsp;&nbsp;IFSC: FDRL0001743<br>
+            &nbsp;&nbsp;&nbsp;A/c Holder Name: ADITHYA KRISHNA J G</p>
+
+          <strong>**PLEASE MENTION YOUR FULL NAME.**</strong></p>
         </div>
         <div class="payment-qr">
           <h3>Payment QR Code</h3>
           <img src="img/gpay.png" alt="Payment QR Code">
-          <p class="payment-note">Scan the QR code to make payment via UPI or use bank transfer details provided above</p>
+          <p class="payment-note">Scan the QR code to make payment via UPI or use bank transfer details provided above
+          </p>
         </div>
-        
+
         <div class="form-row">
           <div class="form-group">
             <label>Transaction ID</label>
@@ -598,153 +618,154 @@
     </form>
   </div>
 
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxJtO-ZdkZ_tu2M5919O37Ma8XWMacjmYKRW1MWSpiBBR3H9WbShIhYIT6lkxvNR0Av/exec";
-const BASE_MEMBERSHIP_FEE = 1545;
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxJtO-ZdkZ_tu2M5919O37Ma8XWMacjmYKRW1MWSpiBBR3H9WbShIhYIT6lkxvNR0Av/exec";
+    const BASE_MEMBERSHIP_FEE = 1545;
 
-document.querySelectorAll('input[name="societies"]').forEach(checkbox => {
-  checkbox.addEventListener('change', calculateFees);
-});
+    document.querySelectorAll('input[name="societies"]').forEach(checkbox => {
+      checkbox.addEventListener('change', calculateFees);
+    });
 
-/* --- REPLACE the existing calculateFees function with this --- */
-function calculateFees() {
-  const membershipSelect = document.querySelector('select[name="membershipType"]');
-  const isNew = membershipSelect && membershipSelect.value === "New";
+    /* --- REPLACE the existing calculateFees function with this --- */
+    function calculateFees() {
+      const membershipSelect = document.querySelector('select[name="membershipType"]');
+      const isNew = membershipSelect && membershipSelect.value === "New";
 
-  let societyTotal = 0;
+      let societyTotal = 0;
 
-  document.querySelectorAll('input[name="societies"]').forEach(cb => {
-    // original data-fee (as number)
-    const originalFee = parseInt(cb.getAttribute('data-fee') || 0, 10);
+      document.querySelectorAll('input[name="societies"]').forEach(cb => {
+        // original data-fee (as number)
+        const originalFee = parseInt(cb.getAttribute('data-fee') || 0, 10);
 
-    // determine adjusted fee based on rules
-    let adjustedFee = originalFee;
+        // determine adjusted fee based on rules
+        let adjustedFee = originalFee;
 
-    // identify society by value (keeps matching robust)
-    const val = (cb.value || "").toLowerCase();
+        // identify society by value (keeps matching robust)
+        const val = (cb.value || "").toLowerCase();
 
-    if (isNew) {
-      if (val.includes("signal processing") || val.includes("signal processing society") ) {
-        // 50% off for Signal Processing (round to nearest rupee)
-        adjustedFee = Math.round(originalFee * 0.5);
-      }
-      if (val.includes("computer society") || val.includes("computer")) {
-        // Computer Society free for new members
-        adjustedFee = 0;
-      }
-    } else {
-      // for renewals or others: use originalFee (no change)
-      adjustedFee = originalFee;
-    }
-
-    // update the visible fee badge next to the checkbox (if present)
-    // we locate the sibling .society-fee inside the parent label
-    const parentLabel = cb.closest('.society-item');
-    if (parentLabel) {
-      const feeSpan = parentLabel.querySelector('.society-fee');
-      if (feeSpan) {
-        if (adjustedFee === 0) {
-          feeSpan.innerText = feeSpan.classList.contains('free') ? feeSpan.innerText : "FREE";
-          feeSpan.classList.remove('paid');
-          feeSpan.classList.add('free');
+        if (isNew) {
+          if (val.includes("signal processing") || val.includes("signal processing society")) {
+            // 50% off for Signal Processing (round to nearest rupee)
+            adjustedFee = Math.round(originalFee * 0.5);
+          }
+          if (val.includes("computer society") || val.includes("computer")) {
+            // Computer Society free for new members
+            adjustedFee = 0;
+          }
         } else {
-          feeSpan.innerText = `₹${adjustedFee.toLocaleString()}`;
-          feeSpan.classList.remove('free');
-          feeSpan.classList.add('paid');
+          // for renewals or others: use originalFee (no change)
+          adjustedFee = originalFee;
         }
-      }
+
+        // update the visible fee badge next to the checkbox (if present)
+        // we locate the sibling .society-fee inside the parent label
+        const parentLabel = cb.closest('.society-item');
+        if (parentLabel) {
+          const feeSpan = parentLabel.querySelector('.society-fee');
+          if (feeSpan) {
+            if (adjustedFee === 0) {
+              feeSpan.innerText = feeSpan.classList.contains('free') ? feeSpan.innerText : "FREE";
+              feeSpan.classList.remove('paid');
+              feeSpan.classList.add('free');
+            } else {
+              feeSpan.innerText = `₹${adjustedFee.toLocaleString()}`;
+              feeSpan.classList.remove('free');
+              feeSpan.classList.add('paid');
+            }
+          }
+        }
+
+        // add to total only if checkbox is checked
+        if (cb.checked) {
+          societyTotal += adjustedFee;
+        }
+      });
+
+      const grandTotal = BASE_MEMBERSHIP_FEE + societyTotal;
+
+      document.getElementById("societiesFee").innerText = `₹${societyTotal.toLocaleString()}`;
+      document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString()}`;
+    }
+    /* --- End replacement --- */
+
+    /* --- ADD this listener so changing Membership Type recalculates fees immediately --- */
+    const membershipTypeSelect = document.querySelector('select[name="membershipType"]');
+    if (membershipTypeSelect) {
+      membershipTypeSelect.addEventListener('change', calculateFees);
     }
 
-    // add to total only if checkbox is checked
-    if (cb.checked) {
-      societyTotal += adjustedFee;
-    }
-  });
-
-  const grandTotal = BASE_MEMBERSHIP_FEE + societyTotal;
-
-  document.getElementById("societiesFee").innerText = `₹${societyTotal.toLocaleString()}`;
-  document.getElementById("grandTotal").innerText = `₹${grandTotal.toLocaleString()}`;
-}
-/* --- End replacement --- */
-
-/* --- ADD this listener so changing Membership Type recalculates fees immediately --- */
-const membershipTypeSelect = document.querySelector('select[name="membershipType"]');
-if (membershipTypeSelect) {
-  membershipTypeSelect.addEventListener('change', calculateFees);
-}
-
-/* Keep the existing line that calls calculateFees() at load — it will now use the new rules */
-calculateFees();
+    /* Keep the existing line that calls calculateFees() at load — it will now use the new rules */
+    calculateFees();
 
 
 
-calculateFees();
+    calculateFees();
 
-document.getElementById("membershipForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const form = e.target;
+    document.getElementById("membershipForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
 
-  const societies = Array.from(document.querySelectorAll('input[name="societies"]:checked'))
-    .map(cb => cb.value).join(", ");
+      const societies = Array.from(document.querySelectorAll('input[name="societies"]:checked'))
+        .map(cb => cb.value).join(", ");
 
-  const fileInput = document.getElementById("photo");
-  let fileContent = "", fileName = "", fileType = "";
-  if (fileInput.files.length > 0) {
-    const file = fileInput.files[0];
-    fileName = file.name;
-    fileType = file.type;
-    const reader = new FileReader();
-    reader.onload = async function(evt) {
-      fileContent = evt.target.result.split(",")[1];
+      const fileInput = document.getElementById("photo");
+      let fileContent = "", fileName = "", fileType = "";
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        fileName = file.name;
+        fileType = file.type;
+        const reader = new FileReader();
+        reader.onload = async function (evt) {
+          fileContent = evt.target.result.split(",")[1];
 
-      const data = {
-        firstName: form.firstName.value,
-        lastName: form.lastName.value,
-        email: form.email.value,
-        contact: form.contact.value,
-        ieeeId: form.ieeeId.value,
-        membershipType: form.membershipType.value,
-        renewalPassword: form.renewalPassword.value,
-        branch: form.branch.value,
-        batch: form.batch.value,
-        year: form.year.value,
-        societies: societies,
-        totalFee: document.getElementById("grandTotal").innerText.replace("₹","").replace(",",""),
-        transactionId: form.transactionId.value,
-        fileContent: fileContent,
-        fileName: fileName,
-        fileType: fileType
-      };
+          const data = {
+            firstName: form.firstName.value,
+            lastName: form.lastName.value,
+            email: form.email.value,
+            contact: form.contact.value,
+            ieeeId: form.ieeeId.value,
+            membershipType: form.membershipType.value,
+            renewalPassword: form.renewalPassword.value,
+            branch: form.branch.value,
+            batch: form.batch.value,
+            year: form.year.value,
+            societies: societies,
+            totalFee: document.getElementById("grandTotal").innerText.replace("₹", "").replace(",", ""),
+            transactionId: form.transactionId.value,
+            fileContent: fileContent,
+            fileName: fileName,
+            fileType: fileType
+          };
 
-      try {
-        document.getElementById("loadingOverlay").style.display = "flex";
-        
-        const res = await fetch(scriptURL, {
-          method: "POST",
-          body: JSON.stringify(data)
-        });
-        const result = await res.json();
-        
-        document.getElementById("loadingOverlay").style.display = "none";
-        
-        if (result.result === "success") {
-          document.getElementById("successOverlay").style.display = "flex";
-          form.reset();
-          calculateFees();
-          
-          setTimeout(() => {
-            document.getElementById("successOverlay").style.display = "none";
-          }, 10000);
-        }
-      } catch (err) {
-        document.getElementById("loadingOverlay").style.display = "none";
-        alert("Error: " + err.message);
+          try {
+            document.getElementById("loadingOverlay").style.display = "flex";
+
+            const res = await fetch(scriptURL, {
+              method: "POST",
+              body: JSON.stringify(data)
+            });
+            const result = await res.json();
+
+            document.getElementById("loadingOverlay").style.display = "none";
+
+            if (result.result === "success") {
+              document.getElementById("successOverlay").style.display = "flex";
+              form.reset();
+              calculateFees();
+
+              setTimeout(() => {
+                document.getElementById("successOverlay").style.display = "none";
+              }, 10000);
+            }
+          } catch (err) {
+            document.getElementById("loadingOverlay").style.display = "none";
+            alert("Error: " + err.message);
+          }
+        };
+        reader.readAsDataURL(file);
       }
-    };
-    reader.readAsDataURL(file);
-  }
-});
-</script>
+    });
+  </script>
 </body>
+
 </html>
