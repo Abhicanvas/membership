@@ -646,12 +646,12 @@
         if (isNew) {
           if (val.includes("signal processing") || val.includes("signal processing society")) {
             // 50% off for Signal Processing (round to nearest rupee)
-            adjustedFee = Math.round(originalFee * 0.5);
+            adjustedFee = originalFee;
           }
-          if (val.includes("computer society") || val.includes("computer")) {
-            // Computer Society free for new members
-            adjustedFee = 0;
-          }
+          // if (val.includes("computer society") || val.includes("computer")) {
+          //   // Computer Society free for new members
+          //   adjustedFee = 0;
+          // }
         } else {
           // for renewals or others: use originalFee (no change)
           adjustedFee = originalFee;
