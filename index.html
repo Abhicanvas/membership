@@ -392,9 +392,9 @@
         <p><strong>New Membership or Renewal</strong><br>
           Those who wish to renew / get their membership till 31st December 2026 kindly fill this form ASAP.</p>
 
-        <p><strong>HALF YEARLY MEMBERSHIP RATES:</strong><br>
-          <strong>IEEE Membership: Rs. 820.00</strong><br>
-          Half Year Memberships are valid up to 31st December 2026.
+        <p><strong>Full YEARLY MEMBERSHIP RATES:</strong><br>
+          <strong>IEEE Membership: Rs. 1850.00</strong><br>
+          Full Year Memberships are valid up to 31st December 2027.
         </p>
 
         <p>Students are requested to pay the membership fees as well as the amount for their interested societies too.
@@ -501,26 +501,26 @@
         <div class="societies-grid">
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Computer Society" data-fee="235">
+              <input type="checkbox" name="societies" value="Computer Society" data-fee="470">
               <span class="society-name">Computer Society</span>
             </div>
-            <span class="society-fee paid">₹235</span>
+            <span class="society-fee paid">₹470</span>
           </label>
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Robotics and Automation Society " data-fee="150">
+              <input type="checkbox" name="societies" value="Robotics and Automation Society " data-fee="300">
               <span class="society-name">Robotics & Automation</span>
             </div>
-            <span class="society-fee paid">₹150</span>
+            <span class="society-fee paid">₹300</span>
           </label>
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Signal Processing Society " data-fee="120">
+              <input type="checkbox" name="societies" value="Signal Processing Society " data-fee="240">
               <span class="society-name">Signal Processing</span>
             </div>
-            <span class="society-fee paid">₹120</span>
+            <span class="society-fee paid">₹240</span>
           </label>
 
           <label class="society-item">
@@ -533,18 +533,18 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Power and Energy Society " data-fee="30">
+              <input type="checkbox" name="societies" value="Power and Energy Society " data-fee="60">
               <span class="society-name">Power & Energy</span>
             </div>
-            <span class="society-fee paid">₹30</span>
+            <span class="society-fee paid">₹60</span>
           </label>
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Communication Society" data-fee="30">
+              <input type="checkbox" name="societies" value="Communication Society" data-fee="60">
               <span class="society-name">Communication Society</span>
             </div>
-            <span class="society-fee paid">₹30</span>
+            <span class="society-fee paid">₹60</span>
           </label>
 
           <label class="society-item">
@@ -568,7 +568,7 @@
       <div class="fee-summary">
         <div class="fee-row">
           <span class="fee-label">IEEE Membership Fee</span>
-          <span class="fee-amount">₹820</span>
+          <span class="fee-amount">₹1850</span>
         </div>
         <div class="fee-row">
           <span class="fee-label">Society Memberships</span>
@@ -576,7 +576,7 @@
         </div>
         <div class="fee-row total">
           <span class="fee-label">Total Amount</span>
-          <span class="fee-amount" id="grandTotal">₹820</span>
+          <span class="fee-amount" id="grandTotal">₹1850</span>
         </div>
       </div>
 
@@ -619,8 +619,8 @@
   </div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbw77qGeauIR4APjaZjJf_Ex_I-I2eMn8wLBfXgL-huIDtHkHND0e-qrrOBSkesjkpvR/exec";
-    const BASE_MEMBERSHIP_FEE = 820;
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyD5tsw3r73QB2Tj6PYpoS9yRCQV2lc0VTU52_NX4WBnpoESAa0_OfKayB7X2RqG-DOGQ/exec";
+    const BASE_MEMBERSHIP_FEE = 1850;
 
     document.querySelectorAll('input[name="societies"]').forEach(checkbox => {
       checkbox.addEventListener('change', calculateFees);
