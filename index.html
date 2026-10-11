@@ -393,7 +393,7 @@
           Those who wish to renew / get their membership till 31st December 2027 kindly fill this form ASAP.</p>
 
         <p><strong>Full YEARLY MEMBERSHIP RATES:</strong><br>
-          <strong>IEEE Membership: Rs. 1650.00</strong><br>
+          <strong>IEEE Membership: Rs. 1660.00</strong><br>
           Full Year Memberships are valid up to 31st December 2027.
         </p>
 
@@ -503,10 +503,10 @@
         <div class="societies-grid">
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Computer Society" data-fee="470">
+              <input type="checkbox" name="societies" value="Computer Society" data-fee="0">
               <span class="society-name">Computer Society</span>
             </div>
-            <span class="society-fee paid">₹470</span>
+            <span class="society-fee free">FREE</span>
           </label>
 
           <label class="society-item">
@@ -519,18 +519,18 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Signal Processing Society " data-fee="240">
+              <input type="checkbox" name="societies" value="Signal Processing Society " data-fee="120">
               <span class="society-name">Signal Processing</span>
             </div>
-            <span class="society-fee paid">₹240</span>
+            <span class="society-fee paid">₹120</span>
           </label>
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Education Society " data-fee="60">
+              <input type="checkbox" name="societies" value="Education Society " data-fee="0">
               <span class="society-name">Education Society</span>
             </div>
-            <span class="society-fee paid">₹60</span>
+            <span class="society-fee free">FREE</span>
           </label>
 
           <label class="society-item">
@@ -543,10 +543,10 @@
 
           <label class="society-item">
             <div class="society-left">
-              <input type="checkbox" name="societies" value="Communication Society" data-fee="60">
+              <input type="checkbox" name="societies" value="Communication Society" data-fee="0">
               <span class="society-name">Communication Society</span>
             </div>
-            <span class="society-fee paid">₹60</span>
+            <span class="society-fee free">FREE</span>
           </label>
 
           <label class="society-item">
@@ -570,7 +570,7 @@
       <div class="fee-summary">
         <div class="fee-row">
           <span class="fee-label">IEEE Membership Fee</span>
-          <span class="fee-amount">₹1650</span>
+          <span class="fee-amount">₹1660</span>
         </div>
         <div class="fee-row">
           <span class="fee-label">Society Memberships</span>
@@ -578,7 +578,7 @@
         </div>
         <div class="fee-row total">
           <span class="fee-label">Total Amount</span>
-          <span class="fee-amount" id="grandTotal">₹1650</span>
+          <span class="fee-amount" id="grandTotal">₹1660</span>
         </div>
       </div>
 
@@ -622,7 +622,7 @@
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbyD5tsw3r73QB2Tj6PYpoS9yRCQV2lc0VTU52_NX4WBnpoESAa0_OfKayB7X2RqG-DOGQ/exec";
-    const BASE_MEMBERSHIP_FEE = 1650;
+    const BASE_MEMBERSHIP_FEE = 1660;
 
     document.querySelectorAll('input[name="societies"]').forEach(checkbox => {
       checkbox.addEventListener('change', calculateFees);
